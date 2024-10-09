@@ -15,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
-    val viewModel: MarsViewModel = viewModel()
+    val viewModel: MarsViewModel = viewModel(factory = MarsViewModel.Factory)
     val marsUiState = viewModel.marsUiState
     when(marsUiState){
         is MarsUiState.Success -> SuccessScreen(
