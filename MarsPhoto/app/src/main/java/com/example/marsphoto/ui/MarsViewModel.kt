@@ -19,7 +19,7 @@ class MarsViewModel: ViewModel(){
     private fun getMarsPhotos() {
         viewModelScope.launch{
             val listResult = MarsApi.retrofitService.getPhotos()
-            marsUiState = listResult
+            marsUiState = "There are ${listResult.size} MarPhotos"
         }
     }
 }

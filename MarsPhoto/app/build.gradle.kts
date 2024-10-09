@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -51,11 +52,13 @@ dependencies {
     implementation(libs.androidx.material3)
     // Retrofit
     implementation(libs.retrofit)
-    // Retrofit with Scalar Converter
-    // 将 Json 转为字符串，访问 Json 测试使用，然后更换 kotlinx.serialization
-    implementation(libs.converter.scalars)
+    // Retrofit with Kotlin serialization Converter
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp)
     // lifecycle viewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // kotlinx.serialization
+    implementation(libs.kotlinx.serialization.json)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
