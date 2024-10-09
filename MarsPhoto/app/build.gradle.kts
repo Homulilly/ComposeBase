@@ -49,6 +49,13 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    // Retrofit
+    implementation(libs.retrofit)
+    // Retrofit with Scalar Converter
+    // 将 Json 转为字符串，访问 Json 测试使用，然后更换 kotlinx.serialization
+    implementation(libs.converter.scalars)
+    // lifecycle viewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
