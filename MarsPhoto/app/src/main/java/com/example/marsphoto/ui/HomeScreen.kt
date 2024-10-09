@@ -15,12 +15,47 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun HomeScreen(
     modifier: Modifier = Modifier
 ) {
+    val viewModel: MarsViewModel = viewModel()
+    val marsUiState = viewModel.marsUiState
+    when(marsUiState){
+        is MarsUiState.Success -> SuccessScreen(
+            marsUiState = marsUiState,
+            modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState())
+        )
+        MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        MarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
+    }
+}
+
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState())
+        modifier = modifier
     ) {
-        val viewModel: MarsViewModel = viewModel()
-        val photos = viewModel.marsUiState
-        Text(text = photos)
+        Text("Loading")
+    }
+}
+
+@Composable
+fun ErrorScreen(modifier: Modifier = Modifier) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+    ) {
+        Text("Meet Error")
+    }
+}
+
+@Composable
+fun SuccessScreen(
+    marsUiState: MarsUiState,
+    modifier: Modifier = Modifier
+){
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+    ) {
+        Text(text = marsUiState.toString())
     }
 }
