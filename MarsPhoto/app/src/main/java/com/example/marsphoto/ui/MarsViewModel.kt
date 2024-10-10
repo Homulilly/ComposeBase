@@ -14,7 +14,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 sealed interface MarsUiState{
-    data class Success(val photo: MarsPhoto): MarsUiState
+    data class Success(val photos: List<MarsPhoto>): MarsUiState
     object Error: MarsUiState
     object Loading: MarsUiState
 }
@@ -34,10 +34,8 @@ class MarsViewModel @Inject constructor(
         viewModelScope.launch{
             marsUiState = MarsUiState.Loading
             marsUiState = try {
-                val img = marsPhotosRepository.getMarsPhotos()[0]
-                MarsUiState.Success(
-                    img
-                )
+                val photo = marsPhotosRepository.getMarsPhotos()
+                MarsUiState.Success(photo)
             } catch (_: IOException){
                 MarsUiState.Error
             } catch (_: HttpException){

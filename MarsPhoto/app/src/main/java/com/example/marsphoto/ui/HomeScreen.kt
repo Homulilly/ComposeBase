@@ -4,9 +4,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Card
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,9 +26,9 @@ fun HomeScreen(
     val viewModel: MarsViewModel = viewModel()
     val marsUiState = viewModel.marsUiState
     when(marsUiState){
-        is MarsUiState.Success -> CoilScreen(
-            photo = marsUiState.photo,
-            modifier = modifier.fillMaxSize().verticalScroll(rememberScrollState())
+        is MarsUiState.Success -> SuccessScreen(
+            photos = marsUiState.photos,
+            modifier = modifier.fillMaxSize()
         )
         MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         MarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
@@ -58,14 +57,17 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun SuccessScreen(
-    marsUiState: MarsUiState,
-    modifier: Modifier = Modifier
-){
+    photos: List<MarsPhoto>,
+    modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
     ) {
-        Text(text = marsUiState.toString())
+        LazyColumn {
+            itemsIndexed(photos){ _, photo ->
+                CoilScreen(photo)
+            }
+        }
     }
 }
 
@@ -74,14 +76,13 @@ fun CoilScreen(
     photo: MarsPhoto,
     modifier: Modifier = Modifier
 ){
-    Card(modifier = modifier.padding(16.dp)) {
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(photo.imgSrc)
-                .crossfade(true)
-                .build(),
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-        )
-    }
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(photo.imgSrc)
+            .crossfade(true)
+            .build(),
+        contentDescription = null,
+        contentScale = ContentScale.FillWidth,
+        modifier = modifier.fillMaxWidth().padding(8.dp)
+    )
 }
