@@ -1,5 +1,6 @@
 package com.example.marsphoto.di
 
+import com.example.marsphoto.data.LocalMarsPhotosRepository
 import com.example.marsphoto.data.MarsPhotosRepository
 import com.example.marsphoto.data.NetWorkMarsPhotosRepository
 import com.example.marsphoto.network.MarsApiService
@@ -23,6 +24,7 @@ abstract class AppModule{
     @Binds
     @Singleton
     abstract fun bindMarsPhotosRepository(
+        // localMarsPhotosRepository: LocalMarsPhotosRepository
         netWorkMarsPhotosRepository: NetWorkMarsPhotosRepository
     ) : MarsPhotosRepository
 
