@@ -3,4 +3,8 @@
 两栖动物 JSON 数据托管在以下网址
 https://android-kotlin-fun-mars-server.appspot.com/amphibians
 
+演示
 ![Preview](./preview.png)
+
+Result
+![Result](./result.jpg)
