@@ -54,6 +54,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     // Hilt
     implementation(libs.bundles.hilt)
+    // retrofit
+    implementation(libs.okhttp)
+    implementation(libs.retrofit)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     ksp(libs.bundles.hilt.ksp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
