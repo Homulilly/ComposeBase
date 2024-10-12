@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Inventory</string>
+    <string name="add_item">Add Item</string>
+    <string name="edit_item">Edit_Item</string>
+    <string name="item_detail">Item Detail</string>
+    <string name="back_button">Back Button</string>
+    <string name="item_name">Item Name*:</string>
+    <string name="item_price">Item Price*:</string>
+    <string name="item_quantity">Item Quantity*:</string>
 </resources>
