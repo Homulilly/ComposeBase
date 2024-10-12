@@ -4,8 +4,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.inventory.data.Item
+import com.example.inventory.repository.ItemsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ItemAddViewModel : ViewModel() {
+@HiltViewModel
+class ItemAddViewModel @Inject constructor(
+    private val itemsRepository: ItemsRepository
+) : ViewModel() {
     var itemUiState by mutableStateOf(ItemUiState())
         private set
 
@@ -16,8 +25,11 @@ class ItemAddViewModel : ViewModel() {
         )
     }
 
-    suspend fun saveItem(itemDetails: ItemDetails){
-
+    suspend fun saveItem(){
+        val item = itemUiState.itemDetails.toItem()
+        viewModelScope.launch {
+            itemsRepository.insertItem(item)
+        }
     }
 
     private fun validInput(uiState: ItemDetails = itemUiState.itemDetails) : Boolean{
@@ -39,3 +51,10 @@ data class ItemDetails(
     val price: String = "",
     val quantity: String = ""
 )
+
+fun ItemDetails.toItem() = Item(
+        id = id,
+        name = name,
+        price = price.toDoubleOrNull() ?: 0.0,
+        quantity = quantity.toIntOrNull() ?: 0
+    )

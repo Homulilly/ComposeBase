@@ -10,15 +10,18 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.inventory.InventoryTitleBar
 import com.example.inventory.R
 import com.example.inventory.navigation.NavigationDestination
+import kotlinx.coroutines.launch
 
 object ItemAddDestination : NavigationDestination{
     override val route: String = "item_add"
@@ -33,7 +36,8 @@ fun ItemAddScreen(
     navigateUp : () -> Unit,
     modifier : Modifier = Modifier
 ){
-    val viewModel = ItemAddViewModel()
+    val viewModel : ItemAddViewModel = hiltViewModel()
+    val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -53,7 +57,12 @@ fun ItemAddScreen(
             )
 
             Button(
-                onClick = { },
+                onClick = {
+                    coroutineScope.launch{
+                        viewModel.saveItem()
+                        navigateUp()
+                    }
+                },
                 enabled = viewModel.itemUiState.isSavable,
                 modifier = Modifier
                     .fillMaxWidth()
