@@ -5,7 +5,7 @@
 
 ![Preview](./preview.jpg)
 
-联系使用下面的组件
+ 练习使用下面的组件
  - Navigation
  - Hilt
  - Room
