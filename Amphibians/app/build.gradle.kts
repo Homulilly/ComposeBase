@@ -56,10 +56,8 @@ dependencies {
     // Hilt
     implementation(libs.bundles.hilt)
     // retrofit
-    implementation(libs.okhttp)
-    implementation(libs.retrofit)
+    implementation(libs.bundles.retrofit)
     implementation(libs.kotlinx.serialization.json)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
     // coil
     implementation(libs.coil.compose)
     ksp(libs.bundles.hilt.ksp)
