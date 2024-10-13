@@ -37,4 +37,17 @@ class ItemDetailsViewModel @Inject constructor(
             }
         }
     }
+
+    fun sellItem(){
+        item.value?.let {
+            viewModelScope.launch{
+                if (it.quantity > 0)
+                itemsRepository.updateItem(it.copy(quantity = it.quantity - 1))
+            }
+        }
+    }
+
+    fun deleteItem(item: Item){
+        viewModelScope.launch { itemsRepository.deleteItem(item) }
+    }
 }

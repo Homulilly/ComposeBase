@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -63,8 +64,8 @@ fun ItemDetailsScreen(
         }
     ) { innerPadding ->
         uiState?.apply {
+            Column(modifier = Modifier.padding(innerPadding),) {
             Card(
-                modifier = Modifier.padding(innerPadding),
                 elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
             ) {
                 Column(
@@ -114,6 +115,20 @@ fun ItemDetailsScreen(
                         )
                     }
                 }
+            }
+                Button(
+                    onClick = viewModel::sellItem,
+                    modifier = Modifier.fillMaxWidth().padding(8.dp),
+                    enabled = quantity > 0
+                ) { Text("Sell") }
+
+                Button(
+                    onClick = {
+                        viewModel.deleteItem(this@apply)
+                        navigateUp()
+                    },
+                    modifier = Modifier.fillMaxWidth().padding(8.dp),
+                ) { Text("Delete") }
             }
         }
     }
