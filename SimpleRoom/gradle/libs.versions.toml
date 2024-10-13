@@ -52,7 +52,7 @@ google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 android-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 
 [bundles]
-hilt = ["hilt-android", "androidx-hilt-common"]
+hilt = ["hilt-android", "androidx-hilt-common", "androidx-hilt-navigation-compose"]
 hilt-ksp = ["hilt-android-compiler", "androidx-hilt-compiler"]
 room = ["androidx-room-runtime", "androidx-room-ktx"]
 
