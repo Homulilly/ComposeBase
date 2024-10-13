@@ -10,6 +10,8 @@ class LocalItemsRepository @Inject constructor(
 ) : ItemsRepository {
     override fun getAllItems(): Flow<List<Item>> = itemDao.getAllItems()
 
+    override fun getItemById(itemId: Int): Flow<Item> = itemDao.getItemById(itemId)
+
     override suspend fun insertItem(item: Item) = itemDao.insertItem(item)
 
     override suspend fun updateItem(item: Item) = itemDao.updateItem(item)

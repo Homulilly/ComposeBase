@@ -59,7 +59,12 @@ fun InventoryNavHost(
             arguments = listOf(navArgument(ItemDetailsDestination.itemIdArgs){
                 type = NavType.IntType
             })){
-            ItemDetailsScreen()
+            ItemDetailsScreen(
+                onEditItemClick = {
+                    navController.navigate("${ItemEditDestination.route}/$it")
+                },
+                navigateUp = { navController.navigateUp() }
+            )
         }
     }
 }

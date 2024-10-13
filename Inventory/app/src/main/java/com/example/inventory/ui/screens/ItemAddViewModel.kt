@@ -25,7 +25,7 @@ class ItemAddViewModel @Inject constructor(
         )
     }
 
-    suspend fun saveItem(){
+    fun saveItem(){
         val item = itemUiState.itemDetails.toItem()
         viewModelScope.launch {
             itemsRepository.insertItem(item)
