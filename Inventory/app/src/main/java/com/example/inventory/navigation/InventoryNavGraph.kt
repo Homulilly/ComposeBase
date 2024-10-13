@@ -52,7 +52,10 @@ fun InventoryNavHost(
                 type = NavType.IntType
             })
         ){
-            ItemEditScreen()
+            ItemEditScreen(
+                navigateUp = { navController.navigateUp() },
+                navigateBack = { navController.popBackStack() },
+            )
         }
 
         composable(route = ItemDetailsDestination.routeWithArgs,

@@ -37,28 +37,3 @@ abstract class AppModule{
         fun provideItemDao(database: InventoryDatabase) = database.itemDao()
     }
 }
-
-//@Module
-//@InstallIn(SingletonComponent::class)
-//object AppModule {
-//
-//    @Provides
-//    @Singleton
-//    fun provideDatabase(@ApplicationContext context: Context): InventoryDatabase {
-//        return Room.databaseBuilder(
-//            context,
-//            InventoryDatabase::class.java,
-//            "inventory_database"
-//        ).build()
-//    }
-//
-//    @Provides
-//    fun provideItemDao(database: InventoryDatabase): ItemDao {
-//        return database.itemDao()
-//    }
-//
-//    @Provides
-//    fun provideItemsRepository(itemDao: ItemDao): ItemsRepository {
-//        return LocalItemsRepository(itemDao)
-//    }
-//}

@@ -58,3 +58,14 @@ fun ItemDetails.toItem() = Item(
         price = price.toDoubleOrNull() ?: 0.0,
         quantity = quantity.toIntOrNull() ?: 0
     )
+
+fun Item.toItemUiState(isSavable: Boolean = false): ItemUiState{
+    return ItemUiState(ItemDetails(
+        id = id,
+        name = name,
+        price = price.toString(),
+        quantity = quantity.toString()
+    ),
+        isSavable = isSavable
+    )
+}

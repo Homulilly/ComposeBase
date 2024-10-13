@@ -3,6 +3,7 @@ package com.example.inventory.ui.screens
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -85,8 +86,12 @@ fun Homebody(
     onItemClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ){
+    Log.d("HomeScreen", itemList.toString() )
     if (itemList.isEmpty()){
-        Text("Nothing is Here")
+        Box(contentAlignment = Alignment.Center,
+            modifier = modifier.fillMaxSize()) {
+            Text("Nothing is Here")
+        }
     } else {
         LazyColumn(
             modifier = modifier.padding(8.dp)
