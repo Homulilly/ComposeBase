@@ -30,6 +30,12 @@ fun InventoryNavHost(
             HomeScreen(
                 onAddItemClicked = {
                     navController.navigate(ItemAddDestination.route)
+                },
+                /**
+                 * to ItemDetailsScreen with item.id
+                 */
+                onItemClicked = {
+                    navController.navigate("${ItemDetailsDestination.route}/$it" )
                 }
             )
         }
