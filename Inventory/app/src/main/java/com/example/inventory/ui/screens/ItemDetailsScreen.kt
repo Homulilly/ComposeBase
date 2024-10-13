@@ -44,7 +44,6 @@ fun ItemDetailsScreen(
     val uiState by viewModel.item.collectAsState()
 
     Scaffold(
-        modifier = Modifier.padding(8.dp),
         topBar = { InventoryTitleBar(
             title = "Item Details",
             canNavigateBack = true,
